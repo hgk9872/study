@@ -5,6 +5,15 @@
     <title>write</title>
 </head>
 <body>
+    <form action="" method="post">
+        {% comment %}
+            {{ form.as_table }}
+            {{ form.as_p }}
+            {{ form.as_ul }}
+        {% endcomment %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">저장</button>
+    </form>
     hello django
 </body>
 </html>
