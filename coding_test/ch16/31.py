@@ -18,6 +18,7 @@ for test in range(t):
         dp.append(array[idx:idx+m])
         idx += m
     
+    # dp 테이블 갱신
     # 맨 첫번째 열 이후 다음 열부터..
     for j in range(1, m):
         for i in range(n):
