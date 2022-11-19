@@ -1,2 +1,7 @@
-char_list = ['l', 'i', 'fe']
-print(''.join(char_list))
+class FourCal:
+    def setdata(self, first, second):
+        self.first = first
+        self.second = second
+
+a = FourCal()
+a.setdata(4, 2)
