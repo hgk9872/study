@@ -1,7 +1,3 @@
-class FourCal:
-    def setdata(self, first, second):
-        self.first = first
-        self.second = second
+import webbrowser
 
-a = FourCal()
-a.setdata(4, 2)
+webbrowser.open("http://google.com")
