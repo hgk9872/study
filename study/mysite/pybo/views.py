@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.http import HttpResponseNotAllowed
 from .forms import QuestionForm, AnswerForm
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     question_list = Question.objects.order_by('-create_date')
@@ -18,27 +19,31 @@ def detail(request, question_id):
     context = {'question': question} # key, value
     return render(request, 'pybo/question_detail.html', context)
 
+@login_required(login_url='common:login')
 def answer_create(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     if request.method == "POST":
         form = AnswerForm(request.POST)
         if form.is_valid():
             answer = form.save(commit=False) # 임시저장
+            answer.author = request.user # author 속성에 로그인 계정 저장
             answer.create_date = timezone.now()
             answer.question = question # 
             answer.save()
             return redirect('pybo:detail', question_id=question.id)
     else:
-        return HttpResponseNotAllowed('Only POST is possible')
+        form = AnswerForm()
     context = {'question': question, 'form': form}
     return render(request, 'pybo/question_detail.html', context)
 
+@login_required(login_url='common:login')
 def question_create(request):
     if request.method == 'POST':
         form = QuestionForm(request.POST)
         if form.is_valid():
             question = form.save(commit=False) # 임시 저장하여 question 객체 리턴
             question.create_date = timezone.now() # 'subject', 'content'는 form에서 등록 (Meta를 통해)
+            question.author = request.user
             question.save() # 실제로 저장 (객체 생성)
             return redirect('pybo:index') # 데이터(질문 객체) 저장 후, 홈으로 돌아가기
     else:
