@@ -1,3 +1,6 @@
+# 여기서 사용되는 폼은 장고의 form중 ModelForm
+# ModelForm은 데이터(model)과 매핑
+
 from django import forms
 from .models import Question, Answer
 
