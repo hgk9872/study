@@ -25,7 +25,7 @@ q = deque()
 q.append((1, 1, 0)) # 좌표 (1, 1) 부순 횟수 0
 
 while q:
-    x, y, count = q.popleft()
+    x, y, count = q.popleft() # 좌표 - (x, y) / 벽 부순 횟수 - count
     if (x, y) == (n, m): # 도착지에 이르면
         print(count)
         break
@@ -33,8 +33,8 @@ while q:
         nx = x + dx[i]
         ny = y + dy[i]
         if nx >= 1 and ny >= 1 and nx <= n and ny <= m and not visited[nx-1][ny-1]:
-            if arr[nx-1][ny-1] == 0:
-                q.appendleft((nx, ny, count))
+            if arr[nx-1][ny-1] == 0: # 벽이 없는 경우
+                q.appendleft((nx, ny, count)) # count를 증가시키지 않고 우선적으로 처리
                 visited[nx-1][ny-1] = True
             else: # 벽인 경우
                 q.append((nx, ny, count + 1))
