@@ -1,4 +1,4 @@
-# BOJ 14503 - 주사위 굴리기 (골드5)
+# BOJ 14503 - 로봇 청소기 (골드5)
 
 # 세로 크기 n, 가로 m
 n, m = map(int, input().split())
@@ -44,8 +44,8 @@ while True:
     # 네 방향 모두 청소가 이미 되어있거나 벽인 경우,
     if dir_count == 4:
         # 현재 방향에서 뒤쪽 방향으로 이동
-        r = r + dx[d-2]
-        c = c + dy[d-2]
+        r = r - dx[d]
+        c = c - dy[d]
         # 만약 뒤쪽 방향이 벽이라면
         if arr[r][c] == 1:
             break
