@@ -1,7 +1,7 @@
 # 백준 15649 - 실버3
 # https://www.acmicpc.net/problem/15649
 
-def dfs(length):
+def dfs(length, temp):
     if length == m:
         print(*temp)
         return
@@ -9,7 +9,7 @@ def dfs(length):
     for i in range(1, n+1):
         if i not in temp:
             temp.append(i)
-            dfs(length + 1)
+            dfs(length + 1, temp)
             temp.pop()
 
 
@@ -18,4 +18,4 @@ n, m = map(int, input().split())
 
 temp = []
 
-dfs(0) # 길이
+dfs(0, temp) # 길이

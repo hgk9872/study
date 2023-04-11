@@ -1,4 +1,3 @@
 
-string = 'adfaf'
 
-print(string[100:])
+print(-1 % 4)
